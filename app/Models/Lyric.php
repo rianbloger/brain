@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Lyric extends Model
 {
     use HasFactory;
+
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
+    }
 }

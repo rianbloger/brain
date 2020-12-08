@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Band extends Model
 {
     use HasFactory;
+
+    public function albums()
+    {
+        return $this->hasMany(Album::class);
+    }
+
+    public function genres()
+    {
+        return $this->hasMany(Genre::class);
+    }
 }
