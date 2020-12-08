@@ -7,4 +7,6 @@ Auth::routes();
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('dashboard', DashboardController::class)->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('dashboard', DashboardController::class)->name('dashboard');
+});
