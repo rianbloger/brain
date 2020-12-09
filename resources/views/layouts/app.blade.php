@@ -4,12 +4,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endsection
-@push('baseScripts')
+@section('baseScripts')
     <script src="{{ asset('js/app.js')  }}"></script>
-@endpush
+@endsection
 @section('body')
     <x-navbar></x-navbar>
     <div class="mt-4">
         @yield('content')
-    </div>
+    </div> 
 @endsection

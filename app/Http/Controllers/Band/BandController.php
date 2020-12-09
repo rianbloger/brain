@@ -40,4 +40,9 @@ class BandController extends Controller
         $band->genres()->sync(request('genres'));
         return back()->with('success', 'Band was created');
     }
+
+    public function edit(Band $band)
+    {
+        dd($band);
+    }
 }

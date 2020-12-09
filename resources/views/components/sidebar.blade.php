@@ -7,7 +7,7 @@
     <div class="list-group">
        
         <a href="{{ route('bands.create') }}" class="list-group-item list-group-item-action">Create</a>
-        <a href="#" class="list-group-item list-group-item-action">Table</a>
+        <a href="{{ route('bands.table') }}" class="list-group-item list-group-item-action">Table</a>
     </div>
 </div>
 
