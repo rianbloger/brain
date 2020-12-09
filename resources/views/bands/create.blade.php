@@ -1,5 +1,11 @@
 @extends('layouts.backend')
-
+@push('scripts')
+    <script>
+        $(document).ready(function(){
+            $('.select2_multiple').select2();
+        });
+    </script>
+@endpush
 @section('content')
 @include('alert')
     <div class="card">
@@ -23,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label for="genres">Choose Generes</label>
-                    <select type="text" name="genres[]" id="genres" class="form-control " multiple>
+                    <select type="text" name="genres[]" id="genres" class="form-control select2_multiple " multiple>
                         @foreach ($genres as $genre)
                             <option value="{{ $genre->id }}" >{{ $genre->name }}</option>
                         @endforeach
