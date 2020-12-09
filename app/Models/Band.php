@@ -9,6 +9,8 @@ class Band extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function albums()
     {
         return $this->hasMany(Album::class);
@@ -16,6 +18,6 @@ class Band extends Model
 
     public function genres()
     {
-        return $this->hasMany(Genre::class);
+        return $this->belongsToMany(Genre::class);
     }
 }
