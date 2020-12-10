@@ -74,5 +74,6 @@ class BandController extends Controller
 
         $band->genres()->sync(request('genres'));
         return back()->with('success', 'Band was updated');
+        // FILESYSTEM_DRIVER=public
     }
 }
