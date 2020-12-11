@@ -57,7 +57,7 @@ class BandController extends Controller
     {
         request()->validate([
             'name' => 'required|unique:bands,name,' . $band->id,
-            'thumbnail' => request('thumbnail') ? 'image|mimes:jpeg,png,gif,jpg' : '',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,gif,jpg',
             'genres' => 'required|array'
         ]);
 
