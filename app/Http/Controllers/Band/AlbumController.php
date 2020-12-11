@@ -9,9 +9,6 @@ use Illuminate\Support\Str;
 
 class AlbumController extends Controller
 {
-    public function table()
-    {
-    }
     public function create()
     {
         return view('albums.create', [
@@ -38,5 +35,13 @@ class AlbumController extends Controller
         ]);
 
         return back()->with('status', 'Album wa created into ' . $band->name);
+    }
+
+    public function table()
+    {
+        return view('albums.table', [
+            'albums' => Album::paginate(16),
+            'title' => "Albums"
+        ]);
     }
 }
