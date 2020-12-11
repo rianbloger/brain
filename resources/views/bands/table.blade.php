@@ -19,11 +19,14 @@
                     <td>
 
                         <a href="{{ route('bands.edit',$band) }}" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
+                        <div endpoint="{{ route('bands.delete',$band) }}" class="delete d-inline">
+
+                        </div>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    
     {{ $bands->links() }}
 @endsection

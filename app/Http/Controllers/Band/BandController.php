@@ -28,7 +28,7 @@ class BandController extends Controller
     {
         request()->validate([
             'name' => 'required|unique:bands,name',
-            'thumbnail' => request('thumbnail') ? request()->file('thumbnail')->store('images/band') : null,
+            'thumbnail' => request('thumbnail') ? 'image|mimes:jpeg,png,gif,jpg' : '',
             'genres' => 'required|array'
         ]);
 
@@ -74,6 +74,12 @@ class BandController extends Controller
 
         $band->genres()->sync(request('genres'));
         return back()->with('success', 'Band was updated');
-        // FILESYSTEM_DRIVER=public
+    }
+
+    public function destroy(Band $band)
+    {
+        Storage::delete($band->thumbnail);
+        $band->genres()->detach();
+        $band->delete();
     }
 }
