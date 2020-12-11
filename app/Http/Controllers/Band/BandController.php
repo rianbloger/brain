@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Band;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BandController extends Controller
@@ -26,8 +27,8 @@ class BandController extends Controller
     public function store()
     {
         request()->validate([
-            'name' => 'required',
-            'thumbnail' => request('thumbnail') ? 'image|mimes:jpeg,png,gif,jpg' : '',
+            'name' => 'required|unique:bands,name',
+            'thumbnail' => request('thumbnail') ? request()->file('thumbnail')->store('images/band') : null,
             'genres' => 'required|array'
         ]);
 
@@ -43,6 +44,36 @@ class BandController extends Controller
 
     public function edit(Band $band)
     {
-        dd($band);
+        return view('bands.edit', [
+            'band' => $band,
+            'genres' => Genre::get()
+        ]);
+    }
+
+    public function update(Band $band)
+    {
+        request()->validate([
+            'name' => 'required|unique:bands,name,' . $band->id,
+            'thumbnail' => request('thumbnail') ? 'image|mimes:jpeg,png,gif,jpg' : '',
+            'genres' => 'required|array'
+        ]);
+
+        if (request('thumbnail')) {
+            Storage::delete($band->thumbnail);
+            $thumbnail = request()->file('thumbnail')->store('images/band');
+        } elseif ($band->thumbnail) {
+            $thumbnail = $band->thumbnail;
+        } else {
+            $thumbnail = null;
+        }
+        $band->update([
+            'name' => request('name'),
+            'slug' => Str::slug(request('name')),
+            'thumbnail' => $thumbnail
+        ]);
+
+        $band->genres()->sync(request('genres'));
+        return back()->with('success', 'Band was updated');
+        // FILESYSTEM_DRIVER=public
     }
 }
