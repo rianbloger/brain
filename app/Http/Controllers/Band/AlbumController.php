@@ -14,14 +14,15 @@ class AlbumController extends Controller
         return view('albums.create', [
             'title' => 'New Albume',
             'bands' => Band::get(),
-            'submitLabel' => 'Create'
+            'submitLabel' => 'Create',
+            'album' => new Album
         ]);
     }
 
     public function store()
     {
         request()->validate([
-            'name' => 'required',
+            'name' => 'required|unique:albums',
             'year' => 'required',
             'band' => 'required',
 
@@ -59,6 +60,19 @@ class AlbumController extends Controller
 
     public function update(Album $album)
     {
-        dd($album);
+        request()->validate([
+            'name' => 'required|unique:albums,name,' . $album->id,
+            'year' => 'required',
+            'band' => 'required',
+
+        ]);
+
+        $album->update([
+            'name' => request('name'),
+            'slug' => Str::slug(request('name')),
+            'band_id' => request('band'),
+            'year' => request('year')
+        ]);
+        return redirect()->route('albums.table')->with('status', 'Album was updated');
     }
 }

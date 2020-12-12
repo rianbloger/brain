@@ -1,6 +1,9 @@
 @extends('layouts.backend',['title'=>$title])
 @section('content')
-    <card>
+@if (session('status'))
+    <div class="alert alert-success">{{ session('status') }}</div>
+@endif
+    <div class="card">
         <div class="card-headr">{{ $title }}</div>
         <div class="card-body">
            <table class="table">
@@ -25,6 +28,6 @@
            </table> 
            {{ $albums->links() }}
         </div>
-    </card>
+    </div>
 @endsection
     

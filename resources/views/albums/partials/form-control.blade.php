@@ -12,7 +12,7 @@
 </div>
 <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" {{ old('name')?? $album->name }} name="name" id="name">
+    <input type="text" class="form-control" value="{{ old('name')?? $album->name }}" name="name" id="name">
     @error('name')
         <div class="text-danger mt-2">{{ $message }}</div>
     @enderror
