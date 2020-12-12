@@ -27,5 +27,8 @@ Route::middleware('auth')->group(function () {
                 Route::post('create', [AlbumController::class, 'store']);
 
                 Route::get('table', [AlbumController::class, 'table'])->name('albums.table');
+
+                Route::get('{album:slug}/edit', [AlbumController::class, 'edit'])->name('albums.edit');
+                Route::put('{album:slug}/edit', [AlbumController::class, 'update']);
         });
 });

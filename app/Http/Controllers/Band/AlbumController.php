@@ -13,7 +13,8 @@ class AlbumController extends Controller
     {
         return view('albums.create', [
             'title' => 'New Albume',
-            'bands' => Band::get()
+            'bands' => Band::get(),
+            'submitLabel' => 'Create'
         ]);
     }
 
@@ -23,6 +24,7 @@ class AlbumController extends Controller
             'name' => 'required',
             'year' => 'required',
             'band' => 'required',
+
         ]);
 
         $band = Band::find(request('band'));
@@ -43,5 +45,20 @@ class AlbumController extends Controller
             'albums' => Album::paginate(16),
             'title' => "Albums"
         ]);
+    }
+
+    public function edit(Album $album)
+    {
+        return view('albums.edit', [
+            'title' => 'Edit album: ' . $album->name,
+            'album' => $album,
+            'bands' => Band::get(),
+            'submitLabel' => 'Update'
+        ]);
+    }
+
+    public function update(Album $album)
+    {
+        dd($album);
     }
 }

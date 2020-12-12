@@ -17,7 +17,7 @@
                            <td>{{ $album->name }}</td>
                            <td>{{ $album->band->name }}</td>
                            <td>
-                               <a  href="#" class="btn btn-primary btn-sm">Edit</a>
+                               <a  href="{{ route('albums.edit',$album) }}" class="btn btn-primary btn-sm">Edit</a>
                            </td>
                        </tr>
                    @endforeach
