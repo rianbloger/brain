@@ -18,7 +18,7 @@
                     <td>{{ $band->genres()->get()->implode('name',',') }}</td>
                     <td>
 
-                        <a href="{{ route('bands.edit',$band) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('bands.edit',$band) }}" class="btn btn-primary btn-sm">Edit</a>
                         <div endpoint="{{ route('bands.delete',$band) }}" class="delete d-inline">
 
                         </div>

@@ -55027,7 +55027,7 @@ function Delete(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: destroy,
-    className: "btn btn-danger"
+    className: "btn btn-danger btn-sm"
   }, "Delete");
 }
 
