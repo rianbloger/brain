@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Band;
 
 use App\Http\Controllers\Controller;
-use App\Models\Band;
-use App\Models\Genre;
-use Illuminate\Http\Request;
+use App\Http\Requests\Band\BandRequest;
+use App\Models\{Band, Genre};
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -26,16 +25,11 @@ class BandController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(BandRequest $request)
     {
-        request()->validate([
-            'name' => 'required|unique:bands,name',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,gif,jpg',
-            'genres' => 'required|array'
-        ]);
 
         $band = Band::create([
-            'name' => request('name'),
+            'name' => $request->name,
             'slug' => Str::slug(request('name')),
             'thumbnail' => request()->file('thumbnail')->store('images/band')
         ]);
@@ -53,13 +47,9 @@ class BandController extends Controller
         ]);
     }
 
-    public function update(Band $band)
+    public function update(Band $band, BandRequest $request)
     {
-        request()->validate([
-            'name' => 'required|unique:bands,name,' . $band->id,
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,gif,jpg',
-            'genres' => 'required|array'
-        ]);
+
 
         if (request('thumbnail')) {
             Storage::delete($band->thumbnail);
@@ -83,6 +73,7 @@ class BandController extends Controller
     {
         Storage::delete($band->thumbnail);
         $band->genres()->detach();
+        $band->albums()->delete();
         $band->delete();
     }
 }

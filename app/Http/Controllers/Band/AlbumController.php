@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Band;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Band\AlbumRequest;
 use App\Models\{Album, Band};
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class AlbumController extends Controller
@@ -19,14 +19,9 @@ class AlbumController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(AlbumRequest $request)
     {
-        request()->validate([
-            'name' => 'required|unique:albums',
-            'year' => 'required',
-            'band' => 'required',
 
-        ]);
 
         $band = Band::find(request('band'));
 
@@ -58,14 +53,8 @@ class AlbumController extends Controller
         ]);
     }
 
-    public function update(Album $album)
+    public function update(Album $album, AlbumRequest $request)
     {
-        request()->validate([
-            'name' => 'required|unique:albums,name,' . $album->id,
-            'year' => 'required',
-            'band' => 'required',
-
-        ]);
 
         $album->update([
             'name' => request('name'),
