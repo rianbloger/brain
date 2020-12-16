@@ -37,5 +37,9 @@ Route::middleware('auth')->group(function () {
                 Route::post('create', [GenreController::class, 'store']);
 
                 Route::get('table', [GenreController::class, 'table'])->name('genres.table');
+
+                Route::get('{genre:slug}/edit', [GenreController::class, 'edit'])->name('genres.edit');
+                Route::put('{genre:slug}/edit', [GenreController::class, 'update']);
+                Route::delete('{genre:slug}/delete', [GenreController::class, 'destroy'])->name('genres.delete');
         });
 });
