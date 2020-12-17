@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\{Route, Auth};
 use App\Http\Controllers\{HomeController, DashboardController};
-use App\Http\Controllers\Band\{AlbumController, BandController, GenreController};
+use App\Http\Controllers\Band\{AlbumController, BandController, GenreController, LyricController};
 
 Auth::routes();
 
