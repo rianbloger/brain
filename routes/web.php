@@ -42,4 +42,11 @@ Route::middleware('auth')->group(function () {
                 Route::put('{genre:slug}/edit', [GenreController::class, 'update']);
                 Route::delete('{genre:slug}/delete', [GenreController::class, 'destroy'])->name('genres.delete');
         });
+
+        Route::prefix('lyrics')->group(function () {
+                Route::get('create', [LyricController::class, 'create'])->name('lyrics.create');
+                Route::post('create', [LyricController::class, 'store']);
+
+                Route::get('table', [LyricController::class, 'table'])->name('lyrics.table');
+        });
 });
