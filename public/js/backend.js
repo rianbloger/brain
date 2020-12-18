@@ -54990,6 +54990,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 __webpack_require__(/*! ./components/Delete */ "./resources/js/components/Delete.js");
 
+__webpack_require__(/*! ./components/lyrics/Create */ "./resources/js/components/lyrics/Create.js");
+
 /***/ }),
 
 /***/ "./resources/js/components/Delete.js":
@@ -55041,6 +55043,46 @@ if (document.querySelectorAll('.delete')) {
       endpoint: endpoint
     }), item);
   });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/lyrics/Create.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/lyrics/Create.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+function Create(props) {
+  var show = function show() {
+    console.log(props.endpoint);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: show
+  }, "Show");
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Create);
+
+if (document.getElementById('create-lyric')) {
+  var item = document.getElementById('create-lyric');
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Create, {
+    endpoint: item.getAttribute('endpoint')
+  }), item);
 }
 
 /***/ }),

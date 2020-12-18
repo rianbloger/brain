@@ -4,16 +4,19 @@ import swal from 'sweetalert';
 
 
 
-function Create(props) {
+function Create(props ) {
+    const show = () =>{
+        console.log(props.endpoint);
+    }
     return (
-        <div>ABC</div>
+        <button onClick={show}>Show</button>
     );
 }
 
 export default Create;
-
+ 
 if (document.getElementById('create-lyric')) {
     var item = document.getElementById('create-lyric');
-    ReactDOM.render(<Create endpoint={endpoint} />, item);    
+    ReactDOM.render(<Create endpoint={item.getAttribute('endpoint')} />, item);    
     
 }
