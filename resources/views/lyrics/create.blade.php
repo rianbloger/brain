@@ -1,5 +1,5 @@
 @extends('layouts.backend')
 
 @section('content')
-    <div id="create-lyric" endpoint="{{ route('lyrics.create') }}" >  </div>
+    <div id="create-lyric" title="{{ $title }}" endpoint="{{ route('lyrics.create') }}" >  </div>
 @endsection
