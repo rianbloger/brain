@@ -14,7 +14,7 @@ function Create(props ) {
     }
 
     const getAlbumBySelectedBand = async(e)=>{
-        setBandId(e.target.value);
+        setBandId (e.target.value);
         let response = await axios.get(`/albums/get-album-by-${e.target.value}`)
         setAlbums(response.data);
     }
@@ -58,6 +58,10 @@ function Create(props ) {
                       </select>
                     </div> : ''
                     }
+                    <div className="form-group">
+                      <label htmlFor="title">Title</label>
+                      <input type="text" value={title} name="title" id="title" className="form-control" />
+                    </div>
                     <button type="submit" className="btn btn-primary" >Create</button>
                 </form>
             </div>
