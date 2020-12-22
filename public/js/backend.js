@@ -55870,6 +55870,28 @@ function Create(props) {
       bandId = _useState6[0],
       setBandId = _useState6[1];
 
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      albumId = _useState8[0],
+      setAlbumId = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      title = _useState10[0],
+      setTitle = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      body = _useState12[0],
+      setBody = _useState12[1];
+
+  var request = {
+    band: bandId,
+    album: albumId,
+    title: title,
+    body: body
+  };
+
   var getBands = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var response;
@@ -55931,9 +55953,10 @@ function Create(props) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              e.preventDefault(); // let response = await axios.post(props.endpoint)
+              e.preventDefault();
+              console.log(request); // let response = await axios.post(props.endpoint)
 
-            case 1:
+            case 2:
             case "end":
               return _context3.stop();
           }
@@ -55978,6 +56001,9 @@ function Create(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "album"
   }, "Album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    onChange: function onChange(e) {
+      return setAlbumId(e.target.value);
+    },
     className: "form-control",
     name: "album",
     id: "album"
@@ -55995,8 +56021,25 @@ function Create(props) {
   }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     value: title,
+    onChange: function onChange(e) {
+      return setTitle(e.target.value);
+    },
     name: "title",
     id: "title",
+    className: "form-control"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "body"
+  }, "Lyric"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("textarea", {
+    type: "text",
+    value: body,
+    onChange: function onChange(e) {
+      return setBody(e.target.value);
+    },
+    rows: "10",
+    name: "body",
+    id: "body",
     className: "form-control"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "submit",

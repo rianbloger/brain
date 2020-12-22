@@ -7,6 +7,16 @@ function Create(props ) {
     const [bands, setBands] = useState([])
     const [albums, setAlbums] = useState([])
     const [bandId, setBandId] = useState('')
+    const [albumId, setAlbumId] = useState('')
+    const [title,setTitle] = useState('')
+    const [body,setBody] = useState('')
+
+    const request = {
+        band: bandId,
+        album : albumId,
+        title : title,
+        body,
+    };
 
     const getBands = async() => {
         let response = await axios.get('/bands/table')
@@ -21,6 +31,7 @@ function Create(props ) {
 
     const store = async(e) =>{
         e.preventDefault();
+        console.log(request);
         // let response = await axios.post(props.endpoint)
     }
 
@@ -48,7 +59,7 @@ function Create(props ) {
                         albums.length ?
                         <div className="form-group">
                       <label htmlFor="album">Album</label>
-                      <select  className="form-control" name="album" id="album" >
+                      <select onChange={(e) => setAlbumId(e.target.value)}  className="form-control" name="album" id="album" >
                           <option value={null}>Choose a album</option>
                         {  
                             albums.map((album) => {
@@ -60,7 +71,11 @@ function Create(props ) {
                     }
                     <div className="form-group">
                       <label htmlFor="title">Title</label>
-                      <input type="text" value={title} name="title" id="title" className="form-control" />
+                      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} name="title" id="title" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="body">Lyric</label>
+                      <textarea type="text" value={body} onChange={(e) => setBody(e.target.value)} rows="10" name="body" id="body" className="form-control" />
                     </div>
                     <button type="submit" className="btn btn-primary" >Create</button>
                 </form>
