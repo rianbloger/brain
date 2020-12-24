@@ -56036,6 +56036,7 @@ function Create(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "album"
   }, "Album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    value: albumId,
     onChange: function onChange(e) {
       return setAlbumId(e.target.value);
     },

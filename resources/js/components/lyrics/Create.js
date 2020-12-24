@@ -74,7 +74,7 @@ function Create(props ) {
                             albums.length ?
                             <div className="form-group">
                         <label htmlFor="album">Album</label>
-                        <select onChange={(e) => setAlbumId(e.target.value)}  className="form-control" name="album" id="album" >
+                        <select  value={albumId} onChange={(e) => setAlbumId(e.target.value)}  className="form-control" name="album" id="album" >
                             <option value={null}>Choose a album</option>
                             {  
                                 albums.map((album) => {
