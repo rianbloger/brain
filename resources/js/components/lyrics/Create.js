@@ -11,6 +11,7 @@ function Create(props ) {
     const [albumId, setAlbumId] = useState('')
     const [title,setTitle] = useState('')
     const [body,setBody] = useState('')
+    const [errors, setErrors] = useState([])
 
     const request = {
         band: bandId,
@@ -35,8 +36,13 @@ function Create(props ) {
         try{
             let response = await axios.post(props.endpoint, request)
             setMessage(response.data.message);
+            setErrors([]);
+            setAlbumId('')
+            setBandId('')
+            setTitle('')
+            setBody('')
         }catch (e){
-            console.log(e.message);
+            setErrors(e.response.data.errors);
         }
         
     }
@@ -54,7 +60,7 @@ function Create(props ) {
                     <form onSubmit={store}>
                         <div className="form-group">
                         <label htmlFor="band">Band</label>
-                        <select onChange={getAlbumBySelectedBand} className="form-control" name="band" id="band" >
+                        <select value={bandId} onChange={getAlbumBySelectedBand} className="form-control" name="band" id="band" >
                             <option value={null}>Choose a band</option>
                             {  
                                 bands.map((band) => {
@@ -62,6 +68,7 @@ function Create(props ) {
                                 })
                             }
                         </select>
+                        { errors.band ? <div className="text-danger mt-2" >{errors.band[0]}</div> : '' }
                         </div>
                         {
                             albums.length ?
@@ -75,15 +82,18 @@ function Create(props ) {
                                 })
                             }
                         </select>
+                        { errors.album ? <div className="text-danger mt-2" >{errors.album[0]}</div> : '' }
                         </div> : ''
                         }
                         <div className="form-group">
                         <label htmlFor="title">Title</label>
                         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} name="title" id="title" className="form-control" />
+                        { errors.title ? <div className="text-danger mt-2" >{errors.title[0]}</div> : '' }
                         </div>
                         <div className="form-group">
                         <label htmlFor="body">Lyric</label>
                         <textarea type="text" value={body} onChange={(e) => setBody(e.target.value)} rows="10" name="body" id="body" className="form-control" />
+                        { errors.body ? <div className="text-danger mt-2" >{errors.body[0]}</div> : '' }
                         </div>
                         <button type="submit" className="btn btn-primary" >Create</button>
                     </form>

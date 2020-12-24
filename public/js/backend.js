@@ -55890,6 +55890,11 @@ function Create(props) {
       body = _useState14[0],
       setBody = _useState14[1];
 
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState16 = _slicedToArray(_useState15, 2),
+      errors = _useState16[0],
+      setErrors = _useState16[1];
+
   var request = {
     band: bandId,
     album: albumId,
@@ -55967,20 +55972,25 @@ function Create(props) {
             case 4:
               response = _context3.sent;
               setMessage(response.data.message);
-              _context3.next = 11;
+              setErrors([]);
+              setAlbumId('');
+              setBandId('');
+              setTitle('');
+              setBody('');
+              _context3.next = 16;
               break;
 
-            case 8:
-              _context3.prev = 8;
+            case 13:
+              _context3.prev = 13;
               _context3.t0 = _context3["catch"](1);
-              console.log(_context3.t0.message);
+              setErrors(_context3.t0.response.data.errors);
 
-            case 11:
+            case 16:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 8]]);
+      }, _callee3, null, [[1, 13]]);
     }));
 
     return function store(_x2) {
@@ -56007,6 +56017,7 @@ function Create(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "band"
   }, "Band"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    value: bandId,
     onChange: getAlbumBySelectedBand,
     className: "form-control",
     name: "band",
@@ -56018,7 +56029,9 @@ function Create(props) {
       key: band.id,
       value: band.id
     }, band.name);
-  }))), albums.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })), errors.band ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "text-danger mt-2"
+  }, errors.band[0]) : ''), albums.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "album"
@@ -56036,7 +56049,9 @@ function Create(props) {
       key: album.id,
       value: album.id
     }, album.name);
-  }))) : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })), errors.album ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "text-danger mt-2"
+  }, errors.album[0]) : '') : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "title"
@@ -56049,7 +56064,9 @@ function Create(props) {
     name: "title",
     id: "title",
     className: "form-control"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }), errors.title ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "text-danger mt-2"
+  }, errors.title[0]) : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "body"
@@ -56063,7 +56080,9 @@ function Create(props) {
     name: "body",
     id: "body",
     className: "form-control"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  }), errors.body ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "text-danger mt-2"
+  }, errors.body[0]) : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "submit",
     className: "btn btn-primary"
   }, "Create")))));
